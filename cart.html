@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        // Cập nhật tổng giá
+        function updateTotal() {
+            const cartTable = document.querySelector('.cart-table tbody');
+            const rows = cartTable.querySelectorAll('tr');
+            let total = 0;
+
+            rows.forEach(row => {
+                const qtyInput = row.querySelector('.input-qty');
+                const price = parseInt(row.querySelector('.price').innerText.replace(' VND', '').replace(',', ''));
+                const qty = parseInt(qtyInput.value);
+                const rowTotal = price * qty;
+                row.querySelector('.row-total').innerText = rowTotal.toLocaleString('vi-VN') + ' VND';
+                total += rowTotal;
+            });
+
+            document.querySelector('.cart-total h2').innerText = 'Tổng Cộng: ' + total.toLocaleString('vi-VN') + ' VND';
+        }
+
+        // xử lý số lượng đầu vào
+        document.addEventListener('DOMContentLoaded', () => {
+            const qtyInputs = document.querySelectorAll('.input-qty');
+            qtyInputs.forEach(input => {
+                input.addEventListener('change', updateTotal);
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="navbar">
@@ -46,9 +73,19 @@
                 <tbody>
                     <tr>
                         <td>Áo Thun Nam</td>
-                        <td>2</td>
-                        <td>200,000 VND</td>
-                        <td>400,000 VND</td>
+                        <td>
+                            <input aria-label="quantity" class="input-qty" type="number" value="2" min="1" max="10">
+                        </td>
+                        <td class="price">200,000 VND</td>
+                        <td class="row-total">400,000 VND</td>
+                    </tr>
+                    <tr>
+                        <td>Áo Thun Nữ</td>
+                        <td>
+                            <input aria-label="quantity" class="input-qty" type="number" value="2" min="1" max="10">
+                        </td>
+                        <td class="price">200,000 VND</td>
+                        <td class="row-total">400,000 VND</td>
                     </tr>
                     <!-- Thêm các sản phẩm khác ở đây -->
                 </tbody>
@@ -59,6 +96,5 @@
             </div>
         </section>
     </div>
-
 </body>
 </html>
