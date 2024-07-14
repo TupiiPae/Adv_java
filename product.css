@@ -30,6 +30,25 @@ main h2 {
 .product-box img {
     width: 100%;
     height: auto;
+    border: 1px solid #ddd;
+}
+
+.small-image {
+    background-color: white;
+    padding:10px;
+    text-align: center;
+}
+
+.small-image img {
+    width: 60px;
+    height: auto;
+    border-radius: 3px;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s;
+}
+
+.small-image img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
 .product-info {
@@ -67,3 +86,4 @@ main h2 {
 .buy-now-button:hover {
     background-color: #c0392b;
 }
+
